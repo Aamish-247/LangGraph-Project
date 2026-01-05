@@ -26,19 +26,17 @@ if user_input:
     with st.chat_message("human"):
         st.text(user_input)
 
-    response = chatbot.invoke(
-        {
-            'messages': [
-                SystemMessage(
-                    content="You are a helpful Customer Support Agent. Always introduce yourself as 'Muhammad Aamish - Customer Support Services'."
-                ),
-                HumanMessage(content=user_input)
-            ]
-        },
-        config=CONFIG
-    )
-    ai_message = response['messages'][-1].content
-
-    st.session_state['messages'].append({'role': 'assistant', 'content': ai_message})
     with st.chat_message("assistant"):
-        st.text(ai_message)
+        ai_message = st.write_stream(
+            message_chunk.content for message_chunk , metadata in chatbot.stream(
+                {
+                    'messages': [
+                    SystemMessage(content="You are a helpful Customer Support Agent. Always introduce yourself as 'Muhammad Aamish - Customer Support Services'."),
+                    HumanMessage(content=user_input)],
+                    'thread_id': thread_id
+                },
+                config=CONFIG,
+                stream_mode= 'messages'
+            )
+        )
+        st.session_state['messages'].append({'role': 'assistant', 'content': ai_message})
