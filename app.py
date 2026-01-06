@@ -6,7 +6,15 @@ thread_id = '1'
 
 CONFIG = {'configurable': {'thread_id': thread_id}}
 
-st.title("Memory Based Chatbot")
+
+
+#add sidebar
+
+st.sidebar.title("Langgraph Chatbot")
+
+st.button("New Chat")
+
+st.subheader("My conversations")
 
 #creating a session 
 
