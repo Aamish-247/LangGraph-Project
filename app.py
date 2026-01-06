@@ -20,7 +20,7 @@ st.sidebar.button("New Chat")
 
 st.sidebar.subheader("My conversations")
 
-st.sidebar.button(st.session_state["thread_id"])    
+    
 
 #creating a session 
 
