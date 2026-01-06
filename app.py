@@ -12,6 +12,14 @@ def generate_thread_id():
     return thread_id
 
 
+#creating a session 
+
+if 'messages' not in st.session_state:
+    st.session_state['messages'] = []
+
+if "thread_id" not in st.session_state:
+    st.session_state["thread_id"] = generate_thread_id()
+
 #add sidebar
 
 st.sidebar.title("Langgraph Chatbot")
@@ -20,15 +28,9 @@ st.sidebar.button("New Chat")
 
 st.sidebar.subheader("My conversations")
 
-st.sidebar.text(st.session_state["thread_id"])    
+st.sidebar.button(st.session_state["thread_id"])    
 
-#creating a session 
 
-if 'messages' not in st.session_state:
-    st.session_state['messages'] = []
-
-if "thread_id" not in st.session_state:
-    st.session_state["thread_id"] = generate_thread_id()
 
 
 for msg in st.session_state.messages:
