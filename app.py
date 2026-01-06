@@ -12,9 +12,9 @@ CONFIG = {'configurable': {'thread_id': thread_id}}
 
 st.sidebar.title("Langgraph Chatbot")
 
-st.button("New Chat")
+st.sidebar.button("New Chat")
 
-st.subheader("My conversations")
+st.sidebar.subheader("My conversations")
 
 #creating a session 
 
