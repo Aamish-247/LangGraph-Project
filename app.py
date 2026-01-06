@@ -14,6 +14,13 @@ def generate_thread_id():
 def reset_chat():
     st.session_state["messages"] = []
     st.session_state["thread_id"] = generate_thread_id()
+    st.session_state["chat_threads"].append(st.session_state["thread_id"])
+
+
+
+def add_thread(thread_id):
+    if thread_id not in st.session_state["chat_threads"]:
+        st.session_state["chat_threads"].append(thread_id)    
 #creating a session 
 
 if 'messages' not in st.session_state:
@@ -21,6 +28,11 @@ if 'messages' not in st.session_state:
 
 if "thread_id" not in st.session_state:
     st.session_state["thread_id"] = generate_thread_id()
+
+if "chat_threads" not in st.session_state:
+    st.session_state["chat_threads"] = []
+
+add_thread(st.session_state["thread_id"])
 
 #add sidebar
 
@@ -32,7 +44,10 @@ if st.sidebar.button("New Chat"):
 
 st.sidebar.subheader("My conversations")
 
-st.sidebar.button(st.session_state["thread_id"])    
+for thread in st.session_state["chat_threads"]:
+    st.sidebar.button(st.session_state["thread"])
+
+    
 
 
 
