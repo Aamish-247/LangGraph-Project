@@ -3,15 +3,12 @@ from langchain_core.messages import HumanMessage , SystemMessage
 import streamlit as st
 import uuid
 
-thread_id = '1'
 
-CONFIG = {'configurable': {'thread_id': thread_id}}
 
 #utility functions
 
 def generate_thread_id():
     thread_id = uuid.uuid4()
-    st.session_state["thread_id"] = thread_id
     return thread_id
 
 
@@ -22,14 +19,17 @@ st.sidebar.title("Langgraph Chatbot")
 st.sidebar.button("New Chat")
 
 st.sidebar.subheader("My conversations")
-if "thread_id" not in st.session_state["thread_id"]:
-    st.session_state["thread_id"] = generate_thread_id()
+
 st.sidebar.button(st.session_state["thread_id"])    
 
 #creating a session 
 
 if 'messages' not in st.session_state:
     st.session_state['messages'] = []
+
+if "thread_id" not in st.session_state:
+    st.session_state["thread_id"] = generate_thread_id()
+
 
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
@@ -38,6 +38,11 @@ for msg in st.session_state.messages:
 
 
 user_input = st.chat_input("Type your message here...")
+
+
+thread_id = st.session_state["thread_id"]
+
+CONFIG = {'configurable': {'thread_id': thread_id}}
 
 if user_input:
     st.session_state['messages'].append({'role': 'human', 'content': user_input})
