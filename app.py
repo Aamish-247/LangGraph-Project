@@ -14,7 +14,7 @@ def generate_thread_id():
 def reset_chat():
     st.session_state["messages"] = []
     st.session_state["thread_id"] = generate_thread_id()
-    st.session_state["chat_threads"].append(st.session_state["thread_id"])
+    add_thread(st.session_state["thread_id"])
 
 
 
@@ -45,7 +45,7 @@ if st.sidebar.button("New Chat"):
 st.sidebar.subheader("My conversations")
 
 for thread_id in st.session_state["chat_threads"]:
-    st.sidebar.button(st.session_state["thread_id"])
+    st.sidebar.button(thread_id)
 
     
 
