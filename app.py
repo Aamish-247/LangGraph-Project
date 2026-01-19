@@ -49,7 +49,8 @@ for thread_id in st.session_state["chat_threads"]:
 
 
 
-
+def new_session():
+    return
 
 
 for msg in st.session_state.messages:
