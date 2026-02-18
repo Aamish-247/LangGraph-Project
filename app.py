@@ -47,7 +47,10 @@ st.sidebar.subheader("My conversations")
 for thread_id in st.session_state["chat_threads"]:
     st.sidebar.button(thread_id)
 
-
+def select_thread(thread_id):
+    st.session_state["thread_id"] = thread_id
+    #load the messages for the selected thread from the database or any storage
+    #st.session_state["messages"] = load_messages(thread_id)
 
 
 for msg in st.session_state.messages:
