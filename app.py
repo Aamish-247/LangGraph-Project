@@ -47,7 +47,8 @@ st.sidebar.subheader("My conversations")
 for thread_id in st.session_state["chat_threads"]:
     st.sidebar.button(thread_id)
 
-
+def Result():
+    st.write("This is the result of the button click")
 
 
 for msg in st.session_state.messages:
