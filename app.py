@@ -47,7 +47,8 @@ st.sidebar.subheader("My conversations")
 for thread_id in st.session_state["chat_threads"]:
     st.sidebar.button(thread_id)
 
-
+def multiply(a, b):
+    return a * b
 
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
