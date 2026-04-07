@@ -47,10 +47,6 @@ st.sidebar.subheader("My conversations")
 for thread_id in st.session_state["chat_threads"]:
     st.sidebar.button(thread_id)
 
-#additional utility functions
-def multiply(a, b):
-    return a * b
-
 def add_new_thread(thread_id):
     if thread_id not in st.session_state["chat_threads"]:
         st.session_state["chat_threads"].append(thread_id)
