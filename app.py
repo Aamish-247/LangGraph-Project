@@ -41,6 +41,9 @@ st.sidebar.title("Langgraph Chatbot")
 if st.sidebar.button("New Chat"):
     reset_chat()
     
+def add_new_thread(thread_id):
+    if thread_id not in st.session_state["chat_threads"]:
+        st.session_state["chat_threads"].append(thread_id)    
 
 st.sidebar.subheader("My conversations")
 
