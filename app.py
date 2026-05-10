@@ -30,21 +30,19 @@ if 'messages' not in st.session_state:
 if "thread_id" not in st.session_state:
     st.session_state["thread_id"] = generate_thread_id()
 
+
+add_thread(st.session_state["thread_id"])    
+
 if "chat_threads" not in st.session_state:
     st.session_state["chat_threads"] = []
 
-add_thread(st.session_state["thread_id"])
 
 #add sidebar
 
 st.sidebar.title("Langgraph Chatbot")
 
 if st.sidebar.button("New Chat"):
-    reset_chat()
-    
-def add_new_thread(thread_id):
-    if thread_id not in st.session_state["chat_threads"]:
-        st.session_state["chat_threads"].append(thread_id)    
+    reset_chat()  
 
 st.sidebar.subheader("My conversations")
 
