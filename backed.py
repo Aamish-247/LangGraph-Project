@@ -3,11 +3,13 @@ from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 import os
 load_dotenv()
-from langgraph.checkpoint.memory import MemorySaver
+from langgraph.checkpoint.sqlite import SqliteSaver
 from typing import Annotated, List
 from pydantic import BaseModel
 from langchain_core.messages import BaseMessage
 from langgraph.graph.message import add_messages
+import sqlite3
+from langchain_core.messages import HumanMessage , SystemMessage
 
 
 #define LLM
@@ -32,8 +34,9 @@ def chat_bot(state: chat_state):
 
     return {'messages': [response]}
 
+conn = sqlite3.connect(database="chat_history.db", check_same_thread=False)
 
-checkpoint = MemorySaver()
+memory = SqliteSaver(conn)
 
 #Define Graph
 
@@ -44,5 +47,16 @@ graph.add_node('chat_bot' , chat_bot)
 graph.add_edge(START , 'chat_bot')
 graph.add_edge('chat_bot' , END)
 
-chatbot = graph.compile(checkpointer=checkpoint)
+chatbot = graph.compile(checkpointer=memory)
 
+CONFIG = {'configurable': {'thread_id': 1234}}
+Result = chatbot.invoke(
+                {
+                    'messages': [
+                    SystemMessage(content="You are a helpful Customer Support Agent. Always introduce yourself as 'Muhammad Aamish - Customer Support Services'."),
+                    HumanMessage(content= "Hey my name is Aamish. I have an issue with my order.")]
+                },
+                config=CONFIG
+            )
+
+print(Result)
