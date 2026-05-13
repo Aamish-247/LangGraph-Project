@@ -49,12 +49,11 @@ graph.add_edge('chat_bot' , END)
 
 chatbot = graph.compile(checkpointer=memory)
 
-CONFIG = {'configurable': {'thread_id': 1234}}
+CONFIG = {'configurable': {'thread_id': '1234'}}
+
 Result = chatbot.invoke(
                 {
-                    'messages': [
-                    SystemMessage(content="You are a helpful Customer Support Agent. Always introduce yourself as 'Muhammad Aamish - Customer Support Services'."),
-                    HumanMessage(content= "my name is Umer and i am feeling hungry")]
+                    'messages': [ HumanMessage(content= "my name is Umer and i am feeling hungry")]
                 },
                 config=CONFIG
             )
