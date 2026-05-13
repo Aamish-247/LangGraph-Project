@@ -56,6 +56,9 @@ for thread_id in st.session_state["chat_threads"][::-1]:
 
         temp_messages = []
         for msg in messages:
+            
+            if isinstance(msg, SystemMessage):
+                continue
 
             if isinstance(msg, HumanMessage):
                 role = "user"
