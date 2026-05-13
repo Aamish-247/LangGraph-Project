@@ -6,7 +6,7 @@ load_dotenv()
 from langgraph.checkpoint.memory import MemorySaver
 from typing import Annotated, List
 from pydantic import BaseModel
-from langchain_core.messages import BaseMessage, HumanMessage
+from langchain_core.messages import BaseMessage
 from langgraph.graph.message import add_messages
 
 
