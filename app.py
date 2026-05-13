@@ -29,7 +29,8 @@ def add_thread(thread_id):
         st.session_state["chat_threads"].append(thread_id)    
 
 def get_chat_history(thread_id):
-    chatbot.get_state(CONFIG={'configurable': {'thread_id': thread_id}})        
+    state = chatbot.get_state(config={'configurable': {'thread_id': thread_id}})     
+    return state.values.get('messages', [])   
 
 
 if "thread_id" not in st.session_state:
@@ -83,8 +84,8 @@ thread_id = st.session_state["thread_id"]
 CONFIG = {'configurable': {'thread_id': thread_id}}
 
 if user_input:
-    st.session_state['messages'].append({'role': 'human', 'content': user_input})
-    with st.chat_message("human"):
+    st.session_state['messages'].append({'role': 'user', 'content': user_input})
+    with st.chat_message("user"):
         st.text(user_input)
 
     with st.chat_message("assistant"):
