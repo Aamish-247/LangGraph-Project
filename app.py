@@ -56,7 +56,7 @@ for thread_id in st.session_state["chat_threads"][::-1]:
 
         temp_messages = []
         for msg in messages:
-            
+
             if isinstance(msg, SystemMessage):
                 continue
 
@@ -93,7 +93,7 @@ if user_input:
 
     with st.chat_message("assistant"):
         ai_message = st.write_stream(
-            message_chunk.content for message_chunk in chatbot.stream(
+            message_chunk.content for message_chunk ,metadata in chatbot.stream(
                 {
                     'messages': [
                     SystemMessage(content="You are a helpful Customer Support Agent. Always introduce yourself as 'Muhammad Aamish - Customer Support Services'."),
