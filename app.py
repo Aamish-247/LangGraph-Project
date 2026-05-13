@@ -90,7 +90,7 @@ if user_input:
 
     with st.chat_message("assistant"):
         ai_message = st.write_stream(
-            message_chunk.content for message_chunk , metadata in chatbot.stream(
+            message_chunk.content for message_chunk in chatbot.stream(
                 {
                     'messages': [
                     SystemMessage(content="You are a helpful Customer Support Agent. Always introduce yourself as 'Muhammad Aamish - Customer Support Services'."),
