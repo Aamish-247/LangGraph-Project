@@ -53,7 +53,7 @@ CONFIG = {'configurable': {'thread_id': '1234'}}
 
 Result = chatbot.invoke(
                 {
-                    'messages': [ HumanMessage(content= "my name is Umer and i am feeling hungry")]
+                    'messages': [ HumanMessage(content= "tell me my name please?")]
                 },
                 config=CONFIG
             )
