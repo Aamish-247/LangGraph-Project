@@ -3,7 +3,13 @@ from langchain_core.messages import HumanMessage , SystemMessage
 import streamlit as st
 import uuid
 
+#creating a session 
 
+if 'messages' not in st.session_state:
+    st.session_state['messages'] = [] 
+
+if "chat_threads" not in st.session_state:
+    st.session_state["chat_threads"] = []
 
 #utility functions
 
@@ -25,20 +31,12 @@ def add_thread(thread_id):
 def get_chat_history(thread_id):
     chatbot.get_state(CONFIG={'configurable': {'thread_id': thread_id}})        
 
-#creating a session 
-
-if 'messages' not in st.session_state:
-    st.session_state['messages'] = []
 
 if "thread_id" not in st.session_state:
     st.session_state["thread_id"] = generate_thread_id()
 
 
-add_thread(st.session_state["thread_id"])    
-
-if "chat_threads" not in st.session_state:
-    st.session_state["chat_threads"] = []
-
+add_thread(st.session_state["thread_id"])   
 
 #add sidebar
 
