@@ -23,7 +23,7 @@ def add_thread(thread_id):
         st.session_state["chat_threads"].append(thread_id)    
 
 def get_chat_history(thread_id):
-    chatbot.getstate(CONFIG={'configurable': {'thread_id': thread_id}})        
+    chatbot.get_state(CONFIG={'configurable': {'thread_id': thread_id}})        
 
 #creating a session 
 
