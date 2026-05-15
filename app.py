@@ -96,7 +96,7 @@ if user_input:
             message_chunk.content for message_chunk ,metadata in chatbot.stream(
                 {
                     'messages': [
-                    SystemMessage(content="You are a helpful Customer Support Agent. Always introduce yourself as 'Muhammad Aamish - Customer Support Services'."),
+                    SystemMessage(content="You are a helpful Product Support Agent. Always introduce yourself as 'Muhammad Aamish - Customer Support Services'."),
                     HumanMessage(content=user_input)],
                     'thread_id': thread_id
                 },
